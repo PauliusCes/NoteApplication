@@ -12,9 +12,9 @@ data class Note(
 ) {
     private val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-    init {
-        id = ++noteId
-    }
+//    init {
+//        id = ++noteId
+//    }
 
     fun getFormattedCreationDate(): String {
         return creationDate.format(dateFormatter)
@@ -24,7 +24,7 @@ data class Note(
         return updateDate.format(dateFormatter)
     }
 
-    companion object {
-        private var noteId = 0
-    }
+//    companion object {
+//        private var noteId = 0
+//    }
 }

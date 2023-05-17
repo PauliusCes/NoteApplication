@@ -72,7 +72,8 @@ class Notes : AppCompatActivity() {
             when(result.resultCode) {
                 NoteDetails.SECOND_ACTIVITY_NOTE_INTENT_RETURN_NEW -> {
                     val note = Note(
-                        id = 111,
+                        id = result.data
+                            ?.getIntExtra(NoteDetails.SECOND_ACTIVITY_NOTE_ID, 0) ?: 0,
                         name = result.data
                             ?.getStringExtra(NoteDetails.SECOND_ACTIVITY_NOTE_NAME) ?: "",
                         details = result.data
