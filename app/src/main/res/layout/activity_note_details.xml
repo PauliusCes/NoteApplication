@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:hint="Write something here"
+
             app:layout_constraintTop_toBottomOf="@+id/etEditNoteName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

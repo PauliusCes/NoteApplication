@@ -38,14 +38,14 @@ class CustomAdaper(context: Context) : BaseAdapter() {
     }
 
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = convertView ?: inflater.inflate(R.layout.note, parent, false)
 
         view.findViewById<TextView>(R.id.tvNoteId).text = list[position].id.toString()
         view.findViewById<TextView>(R.id.tvName).text = list[position].name
         view.findViewById<TextView>(R.id.tvNoteDetails).text = list[position].details
-        view.findViewById<TextView>(R.id.tvCreationDate).text = list[position].getFormattedCreationDate()
+        view.findViewById<TextView>(R.id.tvCreationDate).text =
+            list[position].getFormattedCreationDate()
 
         return view
     }

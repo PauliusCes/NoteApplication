@@ -69,7 +69,7 @@ class Notes : AppCompatActivity() {
 
     private val startActivityForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            when(result.resultCode) {
+            when (result.resultCode) {
                 NoteDetails.SECOND_ACTIVITY_NOTE_INTENT_RETURN_NEW -> {
                     val note = Note(
                         id = result.data
@@ -81,6 +81,7 @@ class Notes : AppCompatActivity() {
                     )
                     adapter.add(note)
                 }
+
                 NoteDetails.SECOND_ACTIVITY_NOTE_INTENT_RETURN_UPDATE -> {
                     val note = Note(
                         id = result.data

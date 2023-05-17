@@ -15,7 +15,8 @@ class NoteDetails : AppCompatActivity() {
     lateinit var noteDetails: EditText
     lateinit var saveButton: Button
     lateinit var backButton: Button
-//    lateinit var updatedDate: TextView
+
+    //    lateinit var updatedDate: TextView
     private var finishIntentStatus = SECOND_ACTIVITY_NOTE_INTENT_RETURN_UPDATE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +68,7 @@ class NoteDetails : AppCompatActivity() {
             noteDetails.setText(details)
 //            updatedDate.setText(updateDate)
 
-        } else{
+        } else {
             finishIntentStatus = SECOND_ACTIVITY_NOTE_INTENT_RETURN_NEW
         }
     }
@@ -82,11 +83,10 @@ class NoteDetails : AppCompatActivity() {
         saveButton.setOnClickListener {
             val finishIntent = Intent()
 
-            val updatedNote =
-
             finishIntent.putExtra(SECOND_ACTIVITY_NOTE_ID, (editID.text.toString().toInt()))
             finishIntent.putExtra(SECOND_ACTIVITY_NOTE_NAME, (noteName.text.toString()))
             finishIntent.putExtra(SECOND_ACTIVITY_NOTE_DETAILS, (noteDetails.text.toString()))
+            finishIntent.putExtra(SECOND_ACTIVITY_NOTE_UPDATE_DATE, LocalDateTime.now())
 
             setResult(finishIntentStatus, finishIntent)
             finish()
@@ -97,8 +97,10 @@ class NoteDetails : AppCompatActivity() {
     companion object {
         const val SECOND_ACTIVITY_NOTE_ID = "lt.paulius.noteapplication.secondactivity_note_id"
         const val SECOND_ACTIVITY_NOTE_NAME = "lt.paulius.noteapplication.secondactivity_note_name"
-        const val SECOND_ACTIVITY_NOTE_DETAILS = "lt.paulius.noteapplication.secondactivity_note_details"
-        const val SECOND_ACTIVITY_NOTE_UPDATE_DATE = "lt.paulius.noteapplication.secondactivity_note_update_date"
+        const val SECOND_ACTIVITY_NOTE_DETAILS =
+            "lt.paulius.noteapplication.secondactivity_note_details"
+        const val SECOND_ACTIVITY_NOTE_UPDATE_DATE =
+            "lt.paulius.noteapplication.secondactivity_note_update_date"
 
         const val SECOND_ACTIVITY_NOTE_INTENT_RETURN_NEW = 101
         const val SECOND_ACTIVITY_NOTE_INTENT_RETURN_UPDATE = 102
