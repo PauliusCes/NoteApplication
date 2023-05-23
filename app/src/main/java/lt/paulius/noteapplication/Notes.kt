@@ -41,8 +41,8 @@ class Notes : AppCompatActivity() {
     private fun updateAdapter(notes: MutableList<Note>) {
         adapter.add(notes)
         adapter.add(
-            Note(1, "Buy stuff", "Have to buy milk", creationDate = LocalDateTime.now()),
-            Note(2, "Diary", "First entry", creationDate = LocalDateTime.now())
+            Note(1, "Buy stuff", "Have to buy milk", _creationDate = LocalDateTime.now()),
+            Note(2, "Diary", "First entry", _creationDate = LocalDateTime.now())
         )
     }
 
@@ -72,11 +72,11 @@ class Notes : AppCompatActivity() {
             when (result.resultCode) {
                 NoteDetails.SECOND_ACTIVITY_NOTE_INTENT_RETURN_NEW -> {
                     val note = Note(
-                        id = result.data
+                        _id = result.data
                             ?.getIntExtra(NoteDetails.SECOND_ACTIVITY_NOTE_ID, 0) ?: 0,
-                        name = result.data
+                        _name = result.data
                             ?.getStringExtra(NoteDetails.SECOND_ACTIVITY_NOTE_NAME) ?: "",
-                        details = result.data
+                        _details = result.data
                             ?.getStringExtra(NoteDetails.SECOND_ACTIVITY_NOTE_DETAILS) ?: "",
                     )
                     adapter.add(note)
@@ -84,11 +84,11 @@ class Notes : AppCompatActivity() {
 
                 NoteDetails.SECOND_ACTIVITY_NOTE_INTENT_RETURN_UPDATE -> {
                     val note = Note(
-                        id = result.data
+                        _id = result.data
                             ?.getIntExtra(NoteDetails.SECOND_ACTIVITY_NOTE_ID, 0) ?: 0,
-                        name = result.data
+                        _name = result.data
                             ?.getStringExtra(NoteDetails.SECOND_ACTIVITY_NOTE_NAME) ?: "",
-                        details = result.data
+                        _details = result.data
                             ?.getStringExtra(NoteDetails.SECOND_ACTIVITY_NOTE_DETAILS) ?: ""
                     )
                     if (noteIndex >= 0) {

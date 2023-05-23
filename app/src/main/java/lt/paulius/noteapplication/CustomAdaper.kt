@@ -44,9 +44,8 @@ class CustomAdaper(context: Context) : BaseAdapter() {
         view.findViewById<TextView>(R.id.tvNoteId).text = list[position].id.toString()
         view.findViewById<TextView>(R.id.tvName).text = list[position].name
         view.findViewById<TextView>(R.id.tvNoteDetails).text = list[position].details
-        view.findViewById<TextView>(R.id.tvCreationDate).text =
-            list[position].getFormattedCreationDate()
-
+        view.findViewById<TextView>(R.id.tvCreationDate).text = list[position].creationDate.toString()
+        view.findViewById<TextView>(R.id.tvUpdateDate).text = list[position].updateDate.toString()
         return view
     }
 
