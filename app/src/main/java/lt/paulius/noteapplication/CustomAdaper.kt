@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import lt.paulius.noteapplication.databinding.NoteBinding
 
 class CustomAdaper(context: Context) : BaseAdapter() {
 
@@ -39,13 +40,23 @@ class CustomAdaper(context: Context) : BaseAdapter() {
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = convertView ?: inflater.inflate(R.layout.note, parent, false)
+        var view = convertView
+        var binding: NoteBinding
 
-        view.findViewById<TextView>(R.id.tvNoteId).text = list[position].id.toString()
-        view.findViewById<TextView>(R.id.tvName).text = list[position].name
-        view.findViewById<TextView>(R.id.tvNoteDetails).text = list[position].details
-        view.findViewById<TextView>(R.id.tvCreationDate).text = list[position].creationDate.toString()
-        view.findViewById<TextView>(R.id.tvUpdateDate).text = list[position].updateDate.toString()
+        if(view == null) {
+            binding = NoteBinding.inflate(inflater, parent, false)
+            view = binding.root
+            view.tag = binding
+        } else {
+            binding = view.tag as NoteBinding
+        }
+
+        binding.tvNoteId.text = list[position].id.toString()
+        binding.tvName.text = list[position].name
+        binding.tvNoteDetails.text = list[position].details
+        binding.tvCreationDate.text = list[position].creationDate.toString()
+        binding.tvUpdateDate.text = list[position].updateDate.toString()
+
         return view
     }
 

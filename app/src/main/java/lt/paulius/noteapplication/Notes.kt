@@ -7,21 +7,19 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
+import lt.paulius.noteapplication.databinding.ActivityMainBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class Notes : AppCompatActivity() {
 
-    lateinit var addButton: View
-    lateinit var noteListView: ListView
     lateinit var adapter: CustomAdaper
     private var noteIndex = -1
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        addButton = findViewById(R.id.fabAddNote)
-        noteListView = findViewById(R.id.lvNoteListView)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val notes = mutableListOf<Note>()
 
@@ -35,7 +33,7 @@ class Notes : AppCompatActivity() {
 
     private fun setUpListView() {
         adapter = CustomAdaper(this)
-        noteListView.adapter = adapter
+        binding.lvNoteListView.adapter = adapter
     }
 
     private fun updateAdapter(notes: MutableList<Note>) {
@@ -47,13 +45,13 @@ class Notes : AppCompatActivity() {
     }
 
     private fun setUpOnClickListener() {
-        addButton.setOnClickListener {
+        binding.fabAddNote.setOnClickListener {
             startActivityForResult.launch(Intent(this, NoteDetails::class.java))
         }
     }
 
     private fun setClickNoteDetails() {
-        noteListView.setOnItemClickListener { adapterView, view, position, l ->
+        binding.lvNoteListView.setOnItemClickListener { adapterView, view, position, l ->
             val note: Note = adapterView.getItemAtPosition(position) as Note
 
             noteIndex = position
