@@ -1,25 +1,24 @@
 package lt.paulius.noteapplication
 
-import android.content.ClipData.Item
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
 import lt.paulius.noteapplication.databinding.ActivityMainBinding
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class Notes : AppCompatActivity() {
 
-    lateinit var adapter: CustomAdaper
+    lateinit var adapter: CustomAdapter
     private var noteIndex = -1
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.notes = this
 
         val notes = mutableListOf<Note>()
 
@@ -27,12 +26,10 @@ class Notes : AppCompatActivity() {
         updateAdapter(notes)
 
         setClickNoteDetails()
-        setUpOnClickListener()
-
     }
 
     private fun setUpListView() {
-        adapter = CustomAdaper(this)
+        adapter = CustomAdapter(this)
         binding.lvNoteListView.adapter = adapter
     }
 
@@ -44,11 +41,9 @@ class Notes : AppCompatActivity() {
         )
     }
 
-    private fun setUpOnClickListener() {
-        binding.fabAddNote.setOnClickListener {
+    fun setUpOnClickListener(view: View) {
             startActivityForResult.launch(Intent(this, NoteDetails::class.java))
         }
-    }
 
     private fun setClickNoteDetails() {
         binding.lvNoteListView.setOnItemClickListener { adapterView, view, position, l ->

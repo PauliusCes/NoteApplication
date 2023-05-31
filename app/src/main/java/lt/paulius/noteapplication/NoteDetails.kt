@@ -3,9 +3,8 @@ package lt.paulius.noteapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.view.View
+import androidx.databinding.DataBindingUtil
 import lt.paulius.noteapplication.databinding.ActivityNoteDetailsBinding
 import java.time.LocalDateTime
 
@@ -16,13 +15,11 @@ class NoteDetails : AppCompatActivity() {
     private var finishIntentStatus = SECOND_ACTIVITY_NOTE_INTENT_RETURN_UPDATE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNoteDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_note_details)
+        binding.noteDetails = this
 
         getIntentExtra()
-        setBackButtonOnClickListener()
-        setSaveButtonOnClickListener()
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -62,33 +59,30 @@ class NoteDetails : AppCompatActivity() {
         }
     }
 
-    private fun setBackButtonOnClickListener() {
-        binding.btnBackButton.setOnClickListener {
-            finish()
-        }
+    fun onClickBackButton(view: View) {
+        finish()
     }
 
-    private fun setSaveButtonOnClickListener() {
-        binding.btnSaveButton.setOnClickListener {
-            val finishIntent = Intent()
 
-            finishIntent.putExtra(
-                SECOND_ACTIVITY_NOTE_ID,
-                (binding.etEditID.text.toString().toInt())
-            )
-            finishIntent.putExtra(
-                SECOND_ACTIVITY_NOTE_NAME,
-                (binding.etEditNoteName.text.toString())
-            )
-            finishIntent.putExtra(
-                SECOND_ACTIVITY_NOTE_DETAILS,
-                (binding.etEditNote.text.toString())
-            )
-            finishIntent.putExtra(SECOND_ACTIVITY_NOTE_UPDATE_DATE, LocalDateTime.now())
+    fun onClickSaveButton(view: View) {
+        val finishIntent = Intent()
 
-            setResult(finishIntentStatus, finishIntent)
-            finish()
-        }
+        finishIntent.putExtra(
+            SECOND_ACTIVITY_NOTE_ID,
+            (binding.etEditID.text.toString().toInt())
+        )
+        finishIntent.putExtra(
+            SECOND_ACTIVITY_NOTE_NAME,
+            (binding.etEditNoteName.text.toString())
+        )
+        finishIntent.putExtra(
+            SECOND_ACTIVITY_NOTE_DETAILS,
+            (binding.etEditNote.text.toString())
+        )
+        finishIntent.putExtra(SECOND_ACTIVITY_NOTE_UPDATE_DATE, LocalDateTime.now())
+
+        setResult(finishIntentStatus, finishIntent)
+        finish()
     }
 
 
