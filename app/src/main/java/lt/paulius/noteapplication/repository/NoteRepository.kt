@@ -42,9 +42,15 @@ class NoteRepository {
             "Diary",
             "First entry"
         )
+        val note3 = Note(
+            3,
+            "Diamonds",
+            "Have to take some diamonds from somewhere"
+        )
 
         list.add(note1)
         list.add(note2)
+        list.add(note3)
 
         return list
     }

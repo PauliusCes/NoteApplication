@@ -18,4 +18,12 @@ class NotesViewModel : ViewModel() {
         }
         _notesLiveData.value = NoteRepository.instance.notes
     }
+
+    fun filterNotesByName(name: String) {
+        val allNotes = NoteRepository.instance.notes
+        val filteredNotes = allNotes.filter { note ->
+            note.name.contains(name, ignoreCase = true)
+        }
+        _notesLiveData.value = filteredNotes
+    }
 }
