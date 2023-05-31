@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Notes">
+    tools:context=".notesactivity.Notes">
 
     <data>
 
         <variable
             name="notes"
-            type="lt.paulius.noteapplication.Notes" />
+            type="lt.paulius.noteapplication.notesactivity.Notes" />
 
     </data>
 

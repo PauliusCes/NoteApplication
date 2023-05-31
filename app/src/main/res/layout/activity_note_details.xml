@@ -2,17 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".NoteDetails">
+    tools:context=".notedetailsactivity.NoteDetails">
 
     <data>
 
         <variable
             name="note"
-            type="lt.paulius.noteapplication.Note" />
+            type="lt.paulius.noteapplication.repository.Note" />
 
         <variable
             name="noteDetails"
-            type="lt.paulius.noteapplication.NoteDetails" />
+            type="lt.paulius.noteapplication.notedetailsactivity.NoteDetails" />
 
     </data>
 
@@ -31,18 +31,17 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="96dp">
 
-
-        <EditText
+        <TextView
             android:id="@+id/etEditID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID"
             android:textSize="20sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@{String.valueOf(note.id)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-<!--        pataisyt id-->
 
         <EditText
             android:id="@+id/etEditNoteName"

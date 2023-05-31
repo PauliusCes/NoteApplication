@@ -5,7 +5,7 @@
 
         <variable
             name="note"
-            type="lt.paulius.noteapplication.Note" />
+            type="lt.paulius.noteapplication.repository.Note" />
 
     </data>
 

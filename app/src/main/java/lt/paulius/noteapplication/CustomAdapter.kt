@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import lt.paulius.noteapplication.databinding.NoteBinding
+import lt.paulius.noteapplication.repository.Note
 
 class CustomAdapter(context: Context) : BaseAdapter() {
 
@@ -18,6 +19,7 @@ class CustomAdapter(context: Context) : BaseAdapter() {
     }
 
     fun add(notes: List<Note>) {
+        list.clear()
         list.addAll(notes)
         notifyDataSetChanged()
     }
@@ -36,7 +38,6 @@ class CustomAdapter(context: Context) : BaseAdapter() {
         list.removeAll(note)
         notifyDataSetChanged()
     }
-
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
@@ -60,5 +61,4 @@ class CustomAdapter(context: Context) : BaseAdapter() {
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getCount(): Int = list.size
-
 }
