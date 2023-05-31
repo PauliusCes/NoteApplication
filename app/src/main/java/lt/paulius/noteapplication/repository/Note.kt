@@ -1,6 +1,8 @@
 package lt.paulius.noteapplication.repository
 
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 data class Note(
     private val _id: Int,
     private var _name: String,
@@ -29,9 +31,14 @@ data class Note(
             this._updateDate = LocalDateTime.now()
         }
 
-    val creationDate: LocalDateTime
-        get() = this._creationDate
+    val creationDate: String
+        get() = formatDate(_creationDate)
 
-    val updateDate: LocalDateTime
-        get() = this._updateDate
+    val updateDate: String
+        get() = formatDate(_updateDate)
+
+    private fun formatDate(dateTime: LocalDateTime): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        return dateTime. format(formatter)
+    }
 }
