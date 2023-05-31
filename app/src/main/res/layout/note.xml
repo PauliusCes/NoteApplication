@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="note"
+            type="lt.paulius.noteapplication.repository.Note" />
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNoteId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="@{String.valueOf(note.id)}" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{note.name}" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tvNoteId"
-            android:text="ID"
-            android:layout_marginRight="8dp"
+            android:id="@+id/tvNoteDetails"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{note.details}" />
 
         <TextView
-            android:id="@+id/tvName"
-            android:text="Note name"
+            android:id="@+id/tvCreationDate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{note.creationDate.toString()}" />
 
+        <TextView
+            android:id="@+id/tvUpdateDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{note.updateDate.toString()}" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvNoteDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Note details"
-        />
-
-    <TextView
-        android:id="@+id/tvCreationDate"
-        android:text="Creation date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tvUpdateDate"
-        android:text="Update date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</layout>
